@@ -7,6 +7,21 @@ https://www.docker.com/products/docker-toolbox
 `$ bash --login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'`
 
 
+**ざっくりの流れ**
+
+1. dockerのイメージを取得する(docker pull)
+
+-> 好きなディストリビューションを持ってくる
+
+2. イメージを基にコンテナを作成する(dockerfile build)
+
+-> dockerfileに記述してカスタマイズコンテナを作成できる
+
+3. 起動/接続(docker run)
+
+-> 切り替わる
+
+
 ### Dockerfile
 `docker build` コマンドでDockerコンテナーの起動、構成、Dockerイメージの作成まで一気に実行
 ```
@@ -28,13 +43,34 @@ $ docker build -t centos/centos6 .
 `$docker images`
 
 - dockerイメージが作成できればコンテナを起動する
-
 ```
 $ docker images
 
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 centos/centos6      latest              17c89573e795        17 minutes ago      341.4 MB
 centos              centos6             fc73b108c5ae        2 days ago          228.9 MB
+```
+
+- コンテナを起動する
+
+`$ docker run --name test01 --hostname test01 -i -t centos:centos6 /bin/bash`
+
+`[root@test01 /]#`と表示され接続できる
+
+- コンテナな起動しているかを確認する
+```
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+4d96f1ec6420        centos:centos6      "/bin/bash"         2 minutes ago       Up 2 minutes                            test01
+```
+
+- コンテナの破棄
+```
+$docker rm <CONTAINER ID> | <NAMES>
+```
+- dockerのイメージを破棄
+```
+$ docker rmi <dockerのイメージID or NAME>
 ```
 
 
