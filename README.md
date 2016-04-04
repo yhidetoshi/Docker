@@ -4,6 +4,8 @@
 - pkgをダウンロード
 https://www.docker.com/products/docker-toolbox
 
+`$ bash --login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'`
+
 ### Dockerコマンドメモ
 - <docker_name>という名前のdockerVMを作る
 $ docker-machine create --driver virtualbox <docker_name>
