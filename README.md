@@ -17,3 +17,6 @@ $ docker-machine start default
 - 環境変数を確認
 $ docker-machine env <コンテナ_name>
 
+### CentOS6.7にDockerをインストールする
+- https://github.com/yhidetoshi/chef_mac
+-> cookbooks/docker-installを参照。
