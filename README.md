@@ -7,7 +7,8 @@ https://www.docker.com/products/docker-toolbox
 `$ bash --login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'`
 
 
-### Dockerfileでコンテナを作成
+### Dockerfile
+`docker build` コマンドでDockerコンテナーの起動、構成、Dockerイメージの作成まで一気に実行
 ```
 $ pwd
 /Users/hidetoshi/Docker/httpd
@@ -23,7 +24,18 @@ centos              centos6             fc73b108c5ae        2 days ago          
 $ docker build -t centos/centos6 .
 ```
 
+- dockerイメージを確認
+`$docker images`
 
+- dockerイメージが作成できればコンテナを起動する
+
+```
+$ docker images
+
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+centos/centos6      latest              17c89573e795        17 minutes ago      341.4 MB
+centos              centos6             fc73b108c5ae        2 days ago          228.9 MB
+```
 
 
 
