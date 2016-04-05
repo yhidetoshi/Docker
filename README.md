@@ -64,6 +64,14 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 4d96f1ec6420        centos:centos6      "/bin/bash"         2 minutes ago       Up 2 minutes                            test01
 ```
 
+- コンテナ起動
+
+`docker start <id or name>`
+
+- コンテナ停止
+
+`docker stop <id or name>`
+
 - コンテナの破棄
 ```
 $docker rm <CONTAINER ID> | <NAMES>
