@@ -1,5 +1,7 @@
 # Dockerを使う
 
+![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/docker-icon.png)
+
 ### MacにDockerをインストールする
 - pkgをダウンロードしてインストールする
 https://www.docker.com/products/docker-toolbox
