@@ -158,6 +158,8 @@ $ docker attach nginx
 ```
 # rpm -ivh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
 # yum -y install nginx
+# cd /etc/nginx/conf.d
+# mv default.conf default.conf.org
 ```
 
 $ vim jenkins.conf
@@ -194,6 +196,8 @@ server {
 }
 ```
 - 設定したらnginxを再起動
+`# service nginx restart
+
 
 **[Jenkinsの作成]**
 
@@ -216,3 +220,7 @@ $ docker attach jenkins
 
 [ネットワーク]->[ポートフォワーディング]
 ![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/virtualbox_portfoward.png)
+
+
+**[ブラウザで接続確認]**
+![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/jenkins-top.png)
