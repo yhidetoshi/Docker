@@ -230,3 +230,12 @@ $ docker attach jenkins
 
 **[ブラウザで接続確認]**
 ![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/jenkins-top.png)
+
+
+- docker psで確認
+`$ docker ps`
+```
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                    NAMES
+403c75e81d66        centos:centos6      "/bin/bash"         41 minutes ago      Up 41 minutes       0.0.0.0:8080->8080/tcp   jenkins
+df4559bcf615        centos:centos6      "/bin/bash"         52 minutes ago      Up 4 seconds        0.0.0.0:80->80/tcp       nginx
+```
