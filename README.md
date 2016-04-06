@@ -1,11 +1,33 @@
 # Dockerを使う
 
 ### MacにDockerをインストールする
-- pkgをダウンロード
+- pkgをダウンロードしてインストールする
 https://www.docker.com/products/docker-toolbox
 
 `$ bash --login '/Applications/Docker/Docker Quickstart Terminal.app/Contents/Resources/Scripts/start.sh'`
 
+```
+
+
+                        ##         .
+                  ## ## ##        ==
+               ## ## ## ## ##    ===
+           /"""""""""""""""""\___/ ===
+      ~~~ {~~ ~~~~ ~~~ ~~~~ ~~~ ~ /  ===- ~~~
+           \______ o           __/
+             \    \         __/
+              \____\_______/
+
+
+docker is configured to use the default machine with IP x.x.x.x
+For help getting started, check out the docs at https://docs.docker.com
+
+$ docker-machine restart default
+Restarting "default"...
+Waiting for SSH to be available...
+Detecting the provisioner...
+Restarted machines may have new IP addresses. You may need to re-run the `docker-machine env` command.
+```
 
 **ざっくりの流れ**
 
