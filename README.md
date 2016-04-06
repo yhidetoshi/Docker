@@ -243,3 +243,32 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 403c75e81d66        centos:centos6      "/bin/bash"         41 minutes ago      Up 41 minutes       0.0.0.0:8080->8080/tcp   jenkins
 df4559bcf615        centos:centos6      "/bin/bash"         52 minutes ago      Up 4 seconds        0.0.0.0:80->80/tcp       nginx
 ```
+
+### Docker Hubを使って見る
+
+- アカウントを作成する
+https://hub.docker.com/
+
+- Docker Hubへログイン
+```
+$ docker login
+```
+
+- imageを作る
+```
+$ docker commit -m "コメント" <コンテナID> <名前:タグ>
+
+
+- docker hubリポジトリにpushするためには 名前をユーザ名で初めて/で区切る
+$ docker commit -m 'create nginx' df4559bcf615 hyajima/nginx:Centos6.7
+```
+
+- DockerHubへpush
+```
+$ docker push hyajima/nginx
+```
+
+- imageを探す
+```
+# docker search nodejs
+```
