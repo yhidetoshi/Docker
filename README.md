@@ -218,14 +218,14 @@ $ docker attach jenkins
 
 **[VirtualBoxの設定]**
 
-[ネットワーク]->[ポートフォワーディング]
+[VM名:default]->[設定]->[ネットワーク]->[ポートフォワーディング]
 - ホストIPはifconfigで確認(ローカルOSのip)
 ![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/virtualbox_portfoward_new.png)
 
 
 **[ローカルOSの/etc/hostsを書く]**
 ```
-<ブラウザがアクセスする元のip>	jenkins-dev
+<ローカルホストOSのip>	jenkins-dev
 ```
 
 **[ブラウザで接続確認]**
