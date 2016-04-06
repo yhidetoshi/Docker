@@ -103,6 +103,4 @@ $ docker-machine env <コンテナ_name>
 
 ### Mac環境でNginx+Jenkinsをリバースプロキシ環境を構築する
 
-
-![タイトル](https://github.com/yhidetoshi/Pictures/virtualbox_portfoward.png)
-
+![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/virtualbox_portfoward.png)
