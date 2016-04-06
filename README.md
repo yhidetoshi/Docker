@@ -99,3 +99,10 @@ $ docker-machine env <コンテナ_name>
 ### CentOS6.7にDockerをインストールする
 - https://github.com/yhidetoshi/chef_mac
 -> cookbooks/docker-installを参照。
+
+
+### Mac環境でNginx+Jenkinsをリバースプロキシ環境を構築する
+
+
+<img src="http://bit.ly/1RDtYFC" alt="" title="サンプル">
+
