@@ -212,7 +212,7 @@ $ docker attach jenkins
 # yum install -y java-1.7.0-openjdk
 # mkdir /usr/local/jenkins
 # cd /usr/local/jenkins
-# http://mirrors.jenkins-ci.org/war/latest/jenkins.war
+# wget http://mirrors.jenkins-ci.org/war/latest/jenkins.war
 # java -jar java -jar jenkins.war &
 ```
 
