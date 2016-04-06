@@ -112,18 +112,21 @@ $ docker rmi <dockerのイメージID or NAME>
 
 
 
-### Dockerコマンドメモ
+### Dockerコマンドメモ(at Mac)
 - <docker_name>という名前のdockerVMを作る
 $ docker-machine create --driver virtualbox <docker_name>
 
 - コンテナ一覧を見る
-$ docker-machine ls
+
+`$ docker-machine ls`
 
 - 起動していない場合はこれで起動
-$ docker-machine start default
+
+`$ docker-machine start default`
 
 - 環境変数を確認
-$ docker-machine env <コンテナ_name>
+
+`$ docker-machine env <コンテナ_name>`
 
 ### CentOS6.7にDockerをインストールする
 - https://github.com/yhidetoshi/chef_mac
@@ -152,7 +155,10 @@ $ docker attach nginx
 ```
 
 -> nginxをインストールする
-(installは省き,以下にリバプロの設定(参考))
+```
+# rpm -ivh http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm
+# yum -y install nginx
+```
 
 $ vim jenkins.conf
 ```
@@ -187,7 +193,24 @@ server {
     }
 }
 ```
+- 設定したらnginxを再起動
 
+**[Jenkinsの作成]**
+
+- 作成/接続
+```
+$ docker run --name jenkins -d -p 8080:8080 --hostname jenkins -i -t centos:centos6 /bin/bash
+$ docker attach jenkins
+```
+
+- openjdkを入れて/jenkinsをダウンロードして起動
+```
+# yum install -y java-1.7.0-openjdk
+# mkdir /usr/local/jenkins
+# cd /usr/local/jenkins
+# http://mirrors.jenkins-ci.org/war/latest/jenkins.war
+# java -jar java -jar jenkins.war &
+```
 
 **[VirtualBoxの設定]**
 
