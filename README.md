@@ -220,7 +220,7 @@ $ docker attach jenkins
 
 [VM名:default]->[設定]->[ネットワーク]->[ポートフォワーディング]
 - ホストIPはifconfigで確認(ローカルOSのip)
-![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/virtualbox_portfoward_new.png)
+![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/virtualbox_portfoward_new.png)
 
 
 **[ローカルOSの/etc/hostsを書く]**
@@ -229,7 +229,7 @@ $ docker attach jenkins
 ```
 
 **[ブラウザで接続確認]**
-![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/jenkins-top.png)
+![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/jenkins-top.png)
 
 
 - docker psで確認
