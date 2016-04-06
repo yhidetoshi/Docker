@@ -136,6 +136,8 @@ $ docker-machine create --driver virtualbox <docker_name>
 ### Mac環境でNginx+Jenkinsをリバースプロキシ環境を構築する
 
 **[Nginxの作成]**
+(参考)構築後にimage化してDocker Hubに保存
+ -> https://hub.docker.com/r/hyajima/nginx-rp-test/
 - 作成
 ```
 $ docker run --name nginx -d -p 80:80 --hostname nginx -i -t centos:centos6 /bin/bash
@@ -200,6 +202,8 @@ server {
 
 
 **[Jenkinsの作成]**
+(参考)構築後にimage化してDocker Hubに保存
+ -> https://hub.docker.com/r/hyajima/jenkins-test/
 
 - 作成/接続
 ```
