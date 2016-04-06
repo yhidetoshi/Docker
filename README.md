@@ -132,4 +132,64 @@ $ docker-machine env <コンテナ_name>
 
 ### Mac環境でNginx+Jenkinsをリバースプロキシ環境を構築する
 
+**[Nginxの作成]**
+- 作成
+```
+$ docker run --name nginx -d -p 80:80 --hostname nginx -i -t centos:centos6 /bin/bash
+```
+
+- 確認
+```
+$ docker ps
+
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                NAMES
+df4559bcf615        centos:centos6      "/bin/bash"         5 seconds ago       Up 3 seconds        0.0.0.0:80->80/tcp   nginx
+```
+
+- 接続
+```
+$ docker attach nginx
+```
+
+-> nginxをインストールする
+(installは省き,以下にリバプロの設定(参考))
+
+$ vim jenkins.conf
+```
+upstream backend-jenkins {
+    server <リバプロ先のip>:8080 max_fails=3 fail_timeout=10s;
+}
+server {
+    listen 80;
+    server_name  localhost;
+    keepalive_timeout  300;
+    client_max_body_size 50M;
+    proxy_read_timeout 600;
+    proxy_pass_header Server;
+    proxy_redirect                          off;
+    proxy_set_header Host                   $host;
+    proxy_set_header X-Real-IP              $remote_addr;
+    proxy_set_header X-Forwarded-Host       $host;
+    proxy_set_header X-Forwarded-Server     $host;
+    proxy_set_header X-Forwarded-For        $proxy_add_x_forwarded_for;
+  
+    location / {
+       proxy_pass http://backend-jenkins;
+      break;
+    }
+    error_page  404              /404.html;
+    location = /404.html {
+        root   /usr/share/nginx/html;
+    }
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
+```
+
+
+**[VirtualBoxの設定]**
+
+[ネットワーク]->[ポートフォワーディング]
 ![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/virtualbox_portfoward.png)
