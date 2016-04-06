@@ -9,17 +9,24 @@ https://www.docker.com/products/docker-toolbox
 
 **ざっくりの流れ**
 
-1. dockerのイメージを取得する(docker pull)
+- dockerのイメージを取得する(docker pull)
 
 -> 好きなディストリビューションを持ってくる
 
-2. イメージを基にコンテナを作成する(dockerfile build)
+- イメージを基にコンテナを作成する(dockerfile build)
 
--> dockerfileに記述してカスタマイズコンテナを作成できる
+- dockerfileに記述してカスタマイズコンテナを作成できる
 
-3. 起動/接続(docker run)
+-  起動/接続(docker run)
 
--> 切り替わる
+- docker start | stop
+
+(エラー対処)
+- `(error ) Network timed out while trying to connect to https://index.docker.io`
+- `docker start `しても起動しない場合
+
+(他に良い方法があるかもしれません...)
+`$ docker-machine restart default`
 
 
 ### Dockerfile
