@@ -269,6 +269,12 @@ $ docker commit -m 'create nginx' df4559bcf615 hyajima/nginx:Centos6.7
 ```
 $ docker push hyajima/nginx
 ```
+- DockerHubからpull
+```
+$ docker pull -a hyajima/nginx
+```
+-> [-a]オプションをつけないとlatestタグを取得しようとして失敗する
+
 
 - imageを探す
 ```
