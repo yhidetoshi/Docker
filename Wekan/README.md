@@ -1,4 +1,4 @@
-# Waken install for Docker
+# Wekan install for Docker
 
 ### Dockerのインストール
 `$ sudo yum install -y docker`
@@ -20,3 +20,7 @@
 ### Wekan用のDockerコンテナ定義ファイルを作成
 `$  sudo -u wekan vi /home/wekan/docker-compose.yml`
 
+### コンテナ作成・サービス起動
+`$ su - wekan`
+
+`$ docker-compose up -d`
