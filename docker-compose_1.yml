@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  mongodb:
+    container_name: mongo-1
+    image: mongo
+    hostname: mongo-1
+    restart: always
+    volumes:
+      - /Users/hidetoshi/Docker/data:/data/db
+    ports:
+      - 8088:80
+    networks:
+      dev-nw:
+        ipv4_address: 172.18.0.5
+
+networks:
+  dev-nw:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
+          gateway: 172.18.0.1
