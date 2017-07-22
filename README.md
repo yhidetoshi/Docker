@@ -1,3 +1,21 @@
+## docker-composeを利用
+
+- nginxのconfigとログを永続化するので下記のディレクトリ構成にする
+```
+nginx
+├── containers
+│   └── Dockerfile
+├── docker-compose.yml
+├── log
+│   └── nginx
+│       ├── access.log
+│       └── error.log
+└── nginx
+    └── config
+        └── default.conf
+```
+
+
 # Dockerを使う
 
 ![Alt Text](https://github.com/yhidetoshi/Pictures/raw/master/Docker/docker-icon.png)
