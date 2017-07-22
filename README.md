@@ -14,6 +14,23 @@ nginx
     └── config
         └── default.conf
 ```
+- docker-compose.yml
+```
+version: '2'
+
+services:
+  nginx:
+    environment:
+      TZ: Asia/Tokyo
+    build: ./containers  # Dockerfileのパスを指定する
+    volumes:             # ホスト側に出す場合(データの永続化) コンテナが消えてもデータは保持される
+      - ./log/nginx/:/var/log/nginx/
+      - ./nginx/config/default.conf:/etc/nginx/conf.d/default.conf
+    hostname: nginx
+    ports:
+      - 8100:80
+```
+
 
 
 # Dockerを使う
