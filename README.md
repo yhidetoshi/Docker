@@ -45,7 +45,8 @@ networks:
 
 ```
 
-
+### image/network 指定してコンテナを作成
+$ docker run --name nginx --net wekan_vpc -itd centos
 
 # Dockerを使う
 
