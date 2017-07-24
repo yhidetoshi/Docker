@@ -31,6 +31,20 @@ services:
       - 8100:80
 ```
 
+#### 既存NWを利用する
+```
+NETWORK ID          NAME                DRIVER              SCOPE
+6c046e895515        wekan_vpc           bridge              local
+```
+- `docker-compose.yml`
+```
+networks:
+  default:
+    external:
+      name: wekan_vpc
+
+```
+
 
 
 # Dockerを使う
