@@ -45,6 +45,25 @@ networks:
 
 ```
 
+- ネットワークにオプションを付ける(docker-compose.yml)
+```
+networks:
+  vpc:
+    driver: bridge
+    driver_opts:
+       com.docker.network.bridge.default_wekan_vpc: "true"
+       com.docker.network.bridge.enable_icc: "true"
+       com.docker.network.bridge.enable_ip_masquerade: "true"
+       com.docker.network.bridge.host_binding_ipv4: "0.0.0.0"
+       com.docker.network.bridge.name: "wekan_vpc"
+       com.docker.network.driver.mtu: "1500"
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
+          gateway: 172.18.0.1
+```
+
+
 ### image/network 指定してコンテナを作成
 $ docker run --name nginx --net wekan_vpc -itd centos
 
