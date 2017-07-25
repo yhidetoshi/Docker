@@ -63,6 +63,18 @@ networks:
           gateway: 172.18.0.1
 ```
 
+- `ifconfig` でNWインターフェースが作成されている
+```
+wekan_vpc Link encap:Ethernet  HWaddr 02:42:A4:99:20:02
+          inet addr:172.18.0.1  Bcast:0.0.0.0  Mask:255.255.0.0
+          inet6 addr: fe80::42:a4ff:fe99:2002/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:346 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:312 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0
+          RX bytes:19744 (19.2 KiB)  TX bytes:35792 (34.9 KiB)
+```
+
 
 ### image/network 指定してコンテナを作成
 $ docker run --name nginx --net wekan_vpc -itd centos
