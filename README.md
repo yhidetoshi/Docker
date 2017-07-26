@@ -77,7 +77,10 @@ wekan_vpc Link encap:Ethernet  HWaddr 02:42:A4:99:20:02
 
 
 ### image/network 指定してコンテナを作成
-$ docker run --name nginx --net wekan_vpc -itd centos
+`$ docker run --name nginx --net wekan_vpc -itd centos`
+
+### コンテナのIPを固定して作成
+`$ docker run --name mail -p 587:587 --hostname mail --net ec2user_vpc --ip=172.20.0.5 -itd centos:centos6.9` 
 
 # Dockerを使う
 
