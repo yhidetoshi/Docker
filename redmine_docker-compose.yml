@@ -1,0 +1,89 @@
+version: '2'
+
+services:
+  postgresql:
+    container_name: redmine_db
+    hostname: redmine_db
+    image: sameersbn/postgresql:9.6-2
+    environment:
+    - DB_USER=redmine_name
+    - DB_PASS=password
+    - DB_NAME=redmine_production
+    volumes:
+    - /srv/docker/redmine/postgresql:/var/lib/postgresql
+
+    networks:
+      vpc:
+        ipv4_address: 172.20.0.6
+
+  redmine:
+    container_name: redmine
+    hostname: redmine
+    image: sameersbn/redmine:3.4.2
+    depends_on:
+    - postgresql
+    environment:
+    - TZ=Asia/Tokyo
+
+    - DB_ADAPTER=postgresql
+    - DB_HOST=postgresql
+    - DB_PORT=5432
+    - DB_USER=redmine_name
+    - DB_PASS=password
+    - DB_NAME=redmine_production
+
+    - REDMINE_PORT=10083
+    - REDMINE_HTTPS=true
+    - REDMINE_RELATIVE_URL_ROOT=
+    - REDMINE_SECRET_TOKEN=
+
+    - REDMINE_SUDO_MODE_ENABLED=false
+    - REDMINE_SUDO_MODE_TIMEOUT=15
+
+    - REDMINE_CONCURRENT_UPLOADS=2
+
+    - REDMINE_BACKUP_SCHEDULE=
+    - REDMINE_BACKUP_EXPIRY=
+    - REDMINE_BACKUP_TIME=
+
+    - SMTP_ENABLED=true
+    - SMTP_METHOD=smtp
+    - SMTP_DOMAIN=hoge.com
+    - SMTP_HOST=172.31.3.179
+    - SMTP_PORT=25
+    - SMTP_USER=
+    - SMTP_PASS=
+    - SMTP_STARTTLS=false
+    - SMTP_AUTHENTICATION=
+
+    - IMAP_ENABLED=false
+    - IMAP_HOST=imap.gmail.com
+    - IMAP_PORT=993
+    - IMAP_USER=mailer@example.com
+    - IMAP_PASS=password
+    - IMAP_SSL=true
+    - IMAP_INTERVAL=30
+
+    ports:
+    - "10083:80"
+    volumes:
+    - /srv/docker/redmine/redmine:/home/redmine/data
+    networks:
+      vpc:
+        ipv4_address: 172.20.0.7
+
+
+networks:
+  vpc:
+    driver: bridge
+    driver_opts:
+       com.docker.network.bridge.default_wekan_vpc: "true"
+       com.docker.network.bridge.enable_icc: "true"
+       com.docker.network.bridge.enable_ip_masquerade: "true"
+       com.docker.network.bridge.host_binding_ipv4: "0.0.0.0"
+       com.docker.network.bridge.name: "tools_vpc"
+       com.docker.network.driver.mtu: "1500"
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+          gateway: 172.20.0.1
