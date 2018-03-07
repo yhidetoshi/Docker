@@ -1,0 +1,107 @@
+version: '2'
+
+services:
+  ## Nginx ##
+  beaconnectplus_nginx:
+    container_name: beaconnectplus_nginx
+    build: ./nginx
+    links:
+      - frontend-web-dev.plus.local
+    depends_on:
+      - frontend-web-dev.plus.local
+      - backend-api-dev.plus.local
+    volumes:
+      - ./nginx/log/nginx/:/var/log/nginx
+      - ./nginx/config/:/etc/nginx/conf.d
+      - ./nginx/fastcgi_params/fastcgi_params:/etc/nginx/fastcgi_params
+      - ./php/paprika/:/srv/www/Beaconnectplus_Admin/web
+      - ./nginx/ssl/certs/:/etc/ssl/certs
+      - ./nginx/ssl/private/:/etc/ssl/private
+    hostname: beaconnectplus_nginx
+    restart: always
+    tty: true
+    ports:
+      - 8443:443
+    networks:
+      dev:
+        ipv4_address: 172.50.0.5
+
+  ## パプリカ (Laravel)##
+  frontend-web-dev.plus.local:
+    container_name: frontend-web-dev.plus.local
+    build: ./php
+    links:
+      - backend-api-dev.plus.local
+    depends_on:
+      - backend-api-dev.plus.local
+      - beaconnectplus_pgsql.plus.local
+    volumes:
+      - ./php/log/php-fpm/:/var/log/php-fpm
+      - ./php/php-fpm.d/:/etc/php-fpm.d
+      - ./php/bin:/usr/local/bin
+      - ./php/paprika/:/srv/www/Beaconnectplus_Admin/web
+    hostname: frontend-web-dev.plus.local
+    restart: always
+    tty: true
+    networks:
+      dev:
+        ipv4_address: 172.50.0.6
+
+  ## ポテト(Java)
+  backend-api-dev.plus.local:
+    container_name: backend-api-dev.plus.local
+#    image: store/oracle/serverjre:8
+    build: ./java
+    volumes:
+      - ./java/api/:/home/ec2-user/api
+      - ./java/resource/:/home/ec2-user/resource
+      - ./java/api/:/etc/init.d
+    hostname: backend-api-dev.plus.local
+    restart: always
+    tty: true
+    ports:
+      - 8080:8080
+    networks:
+      dev:
+        ipv4_address: 172.50.0.7
+
+  ## POSTGRES_SQL ##
+  beaconnectplus_pgsql.plus.local:
+    container_name: beaconnectplus_pgsql.plus.local
+    image: postgres:9.6
+    environment:
+      POSTGRES_DB: beaconnect
+      POSTGRES_USER: iot
+      POSTGRES_PASSWORD: iotsensor
+    hostname: beaconnectplus_pgsql.plus.local
+    volumes_from:
+      - beaconnectplus_pgsql_datastore
+    restart: always
+    tty: true
+    ports:
+      - 5432:5432
+    networks:
+      dev:
+        ipv4_address: 172.50.0.8
+
+  ## POSTGRES Data ##
+  beaconnectplus_pgsql_datastore:
+    container_name: beaconnectplus_pgsql_datastore
+    image: busybox
+    volumes:
+#      - ./pgsql96/var/lib/postgresql/data:/var/lib/postgresql/data
+      - /var/lib/postgresql/data
+
+networks:
+  dev:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.enable_icc: "true"
+      com.docker.network.bridge.enable_ip_masquerade: "true"
+      com.docker.network.bridge.host_binding_ipv4: "0.0.0.0"
+      com.docker.network.bridge.name: "plusdev"
+      com.docker.network.driver.mtu: "1500"
+    ipam:
+      config:
+        - subnet: 172.50.0.0/16
+          gateway: 172.50.0.1
