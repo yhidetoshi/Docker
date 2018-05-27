@@ -26,7 +26,7 @@ services:
       dev:
         ipv4_address: 172.50.0.5
 
-  ## パプリカ (Laravel)##
+  ## Laravel ##
   frontend-web-dev.example.local:
     container_name: frontend-web-dev.example.local
     build: ./php
@@ -47,7 +47,7 @@ services:
       dev:
         ipv4_address: 172.50.0.6
 
-  ## ポテト(Java)
+  ## Java
   backend-api-dev.example.local:
     container_name: backend-api-dev.example.local
 #    image: store/oracle/serverjre:8
