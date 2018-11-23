@@ -14,7 +14,7 @@ services:
       - ./nginx/log/nginx/:/var/log/nginx
       - ./nginx/config/:/etc/nginx/conf.d
       - ./nginx/fastcgi_params/fastcgi_params:/etc/nginx/fastcgi_params
-      - ./php/paprika/:/srv/www/bctexample_Admin/web
+      - ./php/hoge/:/srv/www/bctexample_Admin/web
       - ./nginx/ssl/certs/:/etc/ssl/certs
       - ./nginx/ssl/private/:/etc/ssl/private
     hostname: bctexample_nginx
